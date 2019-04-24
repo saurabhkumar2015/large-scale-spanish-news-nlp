@@ -7,3 +7,24 @@ import nltk
 nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
+
+
+
+
+References:
+1. News-please https://github.com/fhamborg/news-please
+2. Scrapy https://scrapy.org/
+3. Apache Kafka https://kafka.apache.org/
+4. SPEC paper https://ieeexplore.ieee.org/document/7474330
+5. Universal Dependency https://universaldependencies.org/
+6. ufal-udpipe python package.
+7. Deduplication Papers/Resources
+a. https://www.hindawi.com/journals/mpe/2016/3919043/
+b. https://www.aclweb.org/anthology/P16-4019
+c. Dissertation of Dr. Ahmad Mustafa,
+https://search.proquest.com/pqdtlocal1006281/docview/2086379093/EDE7D1E6
+ED9843E5PQ/1?accountid=7120
+d. https://www.eventregistry.org/documentation?tab=semanticSimilarity
+8. List of news sources
+https://docs.google.com/spreadsheets/d/13DmJ140wW8pCp6nyRSAk911S7AoF-6zJOJF77qoMuM/
+edit?usp=sharing
