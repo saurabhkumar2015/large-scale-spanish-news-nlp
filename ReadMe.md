@@ -8,8 +8,10 @@ nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
-
-
+1) Use Json file to write to Kafka
+push to kafka: python write_to_kafka.py <absolute path of json file> <topic name>
+example python write_to_kafka.py C:\Users\Saurabh\Downloads\courses\bg\project\data.json guardian222
+check via consumer: .\kafka-console-consumer.sh  --bootstrap-server localhost:9092 --topic guardian2
 
 References:
 1. News-please https://github.com/fhamborg/news-please
@@ -28,3 +30,4 @@ d. https://www.eventregistry.org/documentation?tab=semanticSimilarity
 8. List of news sources
 https://docs.google.com/spreadsheets/d/13DmJ140wW8pCp6nyRSAk911S7AoF-6zJOJF77qoMuM/
 edit?usp=sharing
+
