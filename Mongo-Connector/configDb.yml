@@ -1,0 +1,5 @@
+mysql:
+    host: demo-dhnar.mongodb.net/test
+    user: admin
+    password: admin
+    db: BigDataProj
