@@ -32,11 +32,12 @@ for i in range(0, len(data)):
     article['parsed_tree'] = parsedArticle
     try:
         tests.insert_one(article)
+        print('Inserted newsArticle ' + str(i))
     except:
         print('entry already exists')
         # Same Key already present. Update with the latest info
         IDquery = {'_id' : article['_id']}
         updatedArticle = {"$set": article}
         tests.update_one(IDquery, updatedArticle)
+        print('Updated newsArticle ' + str(i))
 
-    print('Inserted/Updated newsArticle '+ str(i))
