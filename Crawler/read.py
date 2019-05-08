@@ -1,3 +1,6 @@
+# generic metadata generator for all urls stored in text file
+# reading urls from text file and generating metadata to data.json file
+
 from newsplease import NewsPlease
 import json
 
