@@ -25,26 +25,30 @@ def process(fileName, output):
         if line is None or line.strip().__len__() ==0:
             continue
         for data in json.loads(line):
-            title = data['title']
-            text = data['text']
+            title = data['title'].replace('None','')
+            text = data['text'].replace('None','')
             tmp = ""
             if title is not None or title.strip() != "None":
                 tmp = tmp + title.strip() +'.'
-            if text is not None or text.strip() != "None":
-                tmp = tmp + text.strip()
+            if text is  None or text.strip() == "None":
+                continue
+            tmp = tmp + text.strip()
             tmp.replace("\\u00",'').replace("\n","")
             data_list.append(tmp)
-            print("$$$$$$$News is:",tmp)
-    conf = SparkConf().setAppName("Train_News").setMaster("local[4]")
+            # print("$$$$$$$News is:",tmp)
+    conf = SparkConf().setAppName("Train_News").setMaster("local[1]")
     sc = SparkContext(conf=conf)
     sc.setLogLevel("WARN")
-    dataRdd = sc.parallelize(data_list).distinct(numPartitions=4)
+    dataRdd = sc.parallelize(data_list).distinct(numPartitions=1)
     tokenizedRdd = dataRdd.map(lambda x : [x,preprocess(x)])
     taggedRdd = tokenizedRdd.map(lambda x: [x[0],x[1], getNamedEntities(x[0]), extractSignature(x[0])])
     prepared_data = taggedRdd.collect()
 
     result = []
+    i=0
     for data1 in prepared_data:
+        print('Processed data:',i)
+        i = i +1
         for data2 in prepared_data:
             if data1 == data2:
                 continue
@@ -76,12 +80,14 @@ def process(fileName, output):
                                               "Named_Entity_match_count","Named_Entity_match_score","Laven_Named_Entity_match_score","Laven_Named_Entity_match_count","Spot_Words_Match_score","Spot_Words_Match_Score"])
     time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S').replace(" ","_").replace(":","_")
     df.query( 'Named_Entity_match_score > 0 or Spot_Words_Match_Score > 0.25').to_csv(output+time+".csv")
+    print('Report File Saved')
 
 
 def getNamedEntities(x):
-    data = ''.join(ch for ch in x if ch not in exclude)
-    stem = ps.stem(data)
-    doc = nlp(stem)
+    # data = ''.join(ch for ch in x if ch not in exclude)
+    # print(data)
+    # stem = ps.stem(data)
+    doc = nlp(x)
     doc_set = set()
     for X in doc.ents:
         doc_set.add(X.text.replace('\n',''))
