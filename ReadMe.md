@@ -13,6 +13,11 @@ push to kafka: python write_to_kafka.py <absolute path of json file> <topic name
 example python write_to_kafka.py C:\Users\Saurabh\Downloads\courses\bg\project\data.json guardian222
 check via consumer: .\kafka-console-consumer.sh  --bootstrap-server localhost:9092 --topic guardian2
 
+2) Pipline to generate match article pairs
+python similar_stories_pipeline.py <data file> <result file>
+
+python similar_stories_pipeline.py C:\Users\Saurabh\Downloads\courses\bg\project\data.json C:\Users\Saurabh\Downloads\courses\bg\project\result_
+
 References:
 1. News-please https://github.com/fhamborg/news-please
 2. Scrapy https://scrapy.org/
