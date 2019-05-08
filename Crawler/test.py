@@ -1,3 +1,5 @@
+# web scrapper along with meta data generation in data.json file
+
 from newsplease import NewsPlease
 import bs4
 from urllib.request import urlopen
@@ -10,6 +12,7 @@ def main():
     articles = []
     arti = []
     data = []
+    
     #fetching articles url
     my_url = 'https://www.elpais.com.co/'
     open_url = urlopen(my_url)
@@ -20,9 +23,6 @@ def main():
     page_soup = BeautifulSoup(html,"html.parser")
 
     titles = page_soup.findAll("h2",{"class":"title"})
-
-    
-
     paid_title = page_soup.find("div",{"class":"container-full zd"})
     paid_url = paid_title.findAll("h2",{"class":"title"})
 
@@ -43,7 +43,7 @@ def main():
     for p in arti:
         articles.remove(p)
 
-      
+    #creating meta data and storing it in data.json
     for post in articles:
         article = NewsPlease.from_url(post)
         data_json = {
@@ -56,7 +56,7 @@ def main():
         }
         data.append(data_json)
         
-    with open('data2.json', 'w') as outfile:
+    with open('data.json', 'w') as outfile:
         json.dump(data, outfile)
     
 
