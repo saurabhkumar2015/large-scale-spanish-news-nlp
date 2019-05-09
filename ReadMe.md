@@ -1,6 +1,6 @@
-## large-scale-spanish-news-nlp
+## Large Scale Data Collection of Spanish News
 
-## 1) Web crawler and metadat generator:
+## 1) Web crawler and metadata generator:
   Use files in crawler folder for scrapping URLs from different spanish website.
   test.py is sample crawler along with metadata generator.
   read.py is generic metadata generator for all the URLs stored in text file
