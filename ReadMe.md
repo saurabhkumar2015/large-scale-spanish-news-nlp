@@ -1,29 +1,29 @@
-large-scale-spanish-news-nlp
+## large-scale-spanish-news-nlp
 
-1) Web crawler and metadat generator:
+## 1) Web crawler and metadat generator:
   Use files in crawler folder for scrapping URLs from different spanish website.
   test.py is sample crawler along with metadata generator.
   read.py is generic metadata generator for all the URLs stored in text file
   rest are different crawlers for different websites.
 
-1) NLTK Downloads
+## 2) NLTK Downloads
 
 import nltk
 nltk.download('averaged_perceptron_tagger')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
-1) Use Json file to write to Kafka
+## 3) Use Json file to write to Kafka
 push to kafka: python write_to_kafka.py <absolute path of json file> <topic name>
 example python write_to_kafka.py C:\Users\Saurabh\Downloads\courses\bg\project\data.json guardian222
 check via consumer: .\kafka-console-consumer.sh  --bootstrap-server localhost:9092 --topic guardian2
 
-2) Pipline to generate match article pairs
+## 3) Pipline to generate match article pairs
 python similar_stories_pipeline.py <data file> <result file>
 
 python similar_stories_pipeline.py C:\Users\Saurabh\Downloads\courses\bg\project\data.json C:\Users\Saurabh\Downloads\courses\bg\project\result_
 
-References:
+## References:
 1. News-please https://github.com/fhamborg/news-please
 2. Scrapy https://scrapy.org/
 3. Apache Kafka https://kafka.apache.org/
